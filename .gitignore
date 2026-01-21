@@ -1,0 +1,17 @@
+*.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+
+# Docker
+*.log
+.vscode/settings.json
+diagrams/smart_task_assistant_diagram.drawio
+
+# frontend
+node_modules/
+build/
