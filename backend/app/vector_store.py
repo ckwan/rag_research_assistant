@@ -2,6 +2,8 @@ import chromadb
 from typing import List, Dict, Any
 import numpy as np
 
+# https://docs.trychroma.com/docs/overview/migration
+
 class VectorStore:
     def __init__(self, persist: bool = False, persist_dir: str = "./chroma_db"):
         """
