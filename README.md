@@ -6,7 +6,7 @@ A **Research Assistant web app** that allows users to upload documents, perform 
 
 ## RAG Research Assistant System Design Diagram
 ![RAG Research Assistant System Design Diagram](diagrams/rag_research_assistant.png)
-
+![Swagger OpenAPI Documentation](diagrams/openapi.png)
 ---
 
 ## Key Features
