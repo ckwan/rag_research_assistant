@@ -15,14 +15,9 @@ export default function Header({ apiStatus }) {
         }`} />
         <span className="text-sm">
           {apiStatus === 'connected' ? 'Backend Connected' :
-           apiStatus === 'disconnected' ? 'Backend Offline - Start server on port 8000' :
+           apiStatus === 'disconnected' ? 'Backend Offline - Start server on port 8001' :
            'Checking connection...'}
         </span>
-      </div>
-      <div className="flex gap-2 justify-center text-sm flex-wrap">
-        <span className="px-3 py-1 bg-purple-500/20 rounded-full">FastAPI Backend</span>
-        <span className="px-3 py-1 bg-blue-500/20 rounded-full">ChromaDB Vector Store</span>
-        <span className="px-3 py-1 bg-green-500/20 rounded-full">Claude Sonnet 4</span>
       </div>
     </div>
   );
