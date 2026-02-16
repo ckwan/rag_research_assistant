@@ -17,6 +17,3 @@ A **Research Assistant web app** that allows users to upload documents, perform 
 - Stores metadata in PostgreSQL, embeddings in Chroma vector database
 - Frontend React app to interact with documents and queries
 
----
-
-## System Architecture

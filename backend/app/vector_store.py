@@ -11,10 +11,12 @@ class VectorStore:
         :param persist: whether to persist vectors to disk
         :param persist_dir: directory to persist Chroma DB
         """
-        if persist:
-            self.client = chromadb.PersistentClient(path="./chroma_db")
-        else:
-            self.client = chromadb.Client()
+        # chromadb.CloudClient(
+        #   api_key="${CHROMA_API_KEY}",
+        #   tenant="${CHROMA_TENANT_ID}",
+        #   database="{DATABASE_NAME}"
+        # )
+        self.client = chromadb.PersistentClient(path=persist_dir)
 
         # Create or get the collection
         self.collection = self.client.get_or_create_collection(name="documents")

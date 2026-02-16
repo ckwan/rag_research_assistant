@@ -5,7 +5,7 @@ from app.schemas.rag import QueryRequest
 # from app.llm import call_llm_api  # implement a wrapper for Claude/OpenAI API
 
 router = APIRouter()
-vector_store = VectorStore(persist=True)
+vector_store = VectorStore(persist=False)
 
 @router.post("/query/", tags=["query"])
 async def query_rag(request: QueryRequest):

@@ -4,7 +4,7 @@ from app.vector_store import VectorStore
 import os
 
 router = APIRouter()
-vector_store = VectorStore(persist=True)
+vector_store = VectorStore(persist=False)
 
 
 UPLOAD_DIR = "uploaded_docs"
