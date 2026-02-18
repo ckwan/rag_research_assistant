@@ -48,6 +48,9 @@ export default function UploadSection({
           />
         </div>
       </label>
+      <div className="mt-4 text-sm text-gray-400">
+        Files uploaded: {documents.map(doc => doc?.name).filter(Boolean).join(', ')}
+      </div>
     </div>
   );
 }

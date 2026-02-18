@@ -27,5 +27,5 @@ async def upload_documents(file: UploadFile = File(...)):
         "id": doc.id,
         "name": doc.name,
         "num_chunks": doc.num_chunks,
-        "chunks": chunks  # already in memory
+        "chunks": chunks
     }

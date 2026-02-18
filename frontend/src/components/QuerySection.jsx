@@ -24,7 +24,7 @@ export default function QuerySection({
         <button
           onClick={performQuery}
           disabled={!query.trim() || documents.length === 0 || loading || apiStatus !== 'connected'}
-          className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+          className="bg-blue-600 hover:bg-blue-700 text-black disabled:bg-slate-700 disabled:cursor-not-allowed px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
         >
           {loading ? (
             <>

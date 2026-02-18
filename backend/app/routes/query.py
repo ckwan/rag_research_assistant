@@ -14,7 +14,7 @@ async def query_rag(request: QueryRequest):
         raise HTTPException(status_code=400, detail="No documents uploaded")
 
     query_embedding = generate_embedding(request.query)
-    results = vector_store.query(query_embedding, top_k=3)
+    results = vector_store.query(query_embedding, top_k=5)
 
     if not results or not results.get("documents"):
         return "No relevant documents found."
@@ -24,8 +24,6 @@ async def query_rag(request: QueryRequest):
 
     # Join into context
     context = "\n\n---\n\n".join(top_chunks)
-
-    print("Query results:", context)  # Debugging output
 
     # Call LLM with context and user query
     answer = call_llm_api(context, request.query)
