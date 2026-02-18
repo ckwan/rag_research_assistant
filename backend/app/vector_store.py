@@ -21,39 +21,22 @@ class VectorStore:
         # Create or get the collection
         self.collection = self.client.get_or_create_collection(name="documents")
 
-    def add_documents(self, documents: List[str], metadatas: List[Dict[str, Any]], ids: List[str]):
-        """
-        Add text documents to the vector store with metadata
-        """
-        if len(documents) != len(ids) or len(documents) != len(metadatas):
-            raise ValueError("Length of documents, ids, and metadatas must match")
+    def add_documents(self, chunks, embeddings, doc_id):
+        if len(chunks) != len(embeddings):
+            raise ValueError("Length of chunks and embeddings must match")
 
-        self.collection.add(
-            documents=documents,
-            metadatas=metadatas,
-            ids=ids
+        collection = self.client.get_or_create_collection(name="documents")
+        collection.add(
+            documents=chunks,
+            metadatas=[{"doc_id": doc_id} for _ in chunks],
+            ids=[f"{doc_id}_{i}" for i in range(len(chunks))],
+            embeddings=embeddings
         )
 
-    def query(self, query_embedding: List[float], n_results: int = 3):
-        """
-        Query top-n similar documents by embedding
-        :param query_embedding: embedding vector of query
-        :param n_results: number of results to return
-        """
-        results = self.collection.query(
-            query_embeddings=[query_embedding],
-            n_results=n_results
-        )
-        # Return list of documents with metadata and score
-        hits = []
-        for i in range(len(results['ids'][0])):
-            hits.append({
-                "id": results['ids'][0][i],
-                "document": results['documents'][0][i],
-                "metadata": results['metadatas'][0][i],
-                "score": results['distances'][0][i]
-            })
-        return hits
+
+    def query(self, embedding, top_k=3):
+        collection = self.client.get_or_create_collection(name="documents")
+        return collection.query(query_embeddings=[embedding], n_results=top_k)
 
     def persist(self):
         """
