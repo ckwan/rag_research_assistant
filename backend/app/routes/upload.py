@@ -1,6 +1,5 @@
 from fastapi import APIRouter, UploadFile, File
 from app.services.document_service import save_document
-from app.services.embeddings import generate_embedding
 from app.vector_store import VectorStore
 import os
 from app.schemas.documents import DocumentOut
