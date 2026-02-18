@@ -16,8 +16,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-version = "v1"
-app.router.prefix = "/api/{version}"
+app.router.prefix = "/api/v1"
 app.include_router(upload.router, tags=["upload"])
 app.include_router(query.router, tags=["query"])
 app.include_router(reset.router, tags=["delete"])

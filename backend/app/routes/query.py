@@ -3,7 +3,7 @@ from app.services.embeddings import generate_embedding
 from app.vector_store import VectorStore
 from app.schemas.rag import QueryRequest
 from app.services.llm import call_llm_api
-
+import chromadb
 
 router = APIRouter()
 vector_store = VectorStore(persist=False)
@@ -14,7 +14,7 @@ async def query_rag(request: QueryRequest):
         raise HTTPException(status_code=400, detail="No documents uploaded")
 
     query_embedding = generate_embedding(request.query)
-    results = vector_store.query(query_embedding, top_k=5)
+    results = vector_store.query(query_embedding, top_k=10)
 
     if not results or not results.get("documents"):
         return "No relevant documents found."
