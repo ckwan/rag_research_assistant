@@ -5,7 +5,7 @@ export default function Header({ apiStatus }) {
     <div className="text-center mb-8">
       <div className="flex items-center justify-center gap-3 mb-4">
         <Brain className="w-12 h-12 text-purple-400" />
-        <h1 className="text-4xl font-bold">RAG-Powered AI Research Assistant</h1>
+        <h1 className="text-4xl font-bold">RAG-Powered Research Assistant</h1>
       </div>
       <p className="text-gray-300 text-lg mb-3">RAG-Powered Document Analysis System</p>
       <div className="flex items-center justify-center gap-2 mb-3">

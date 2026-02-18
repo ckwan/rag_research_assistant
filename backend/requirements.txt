@@ -10,3 +10,7 @@ pytest-asyncio
 python-dotenv
 python-multipart
 psycopg2-binary
+langchain>=0.1.0
+langchain_text_splitters>=0.1.0
+nltk>=3.8.0
+tiktoken>=0.4.0

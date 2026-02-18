@@ -1,10 +1,10 @@
 from fastapi import APIRouter, UploadFile, File
-from app.services.document_service import save_document, chunk_text
+from app.services.document_service import save_document
 from app.services.embeddings import generate_embedding
 from app.vector_store import VectorStore
 import os
 from app.schemas.documents import DocumentOut
-
+from app.utils.text_splitter import chunk_text
 
 router = APIRouter()
 vector_store = VectorStore(persist=False)

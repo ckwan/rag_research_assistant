@@ -1,9 +1,5 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.models import Document
-from app.services.embeddings import generate_embedding
-from sqlalchemy.orm import Session
-from typing import List
 from app.routes import query, upload, reset
 from app.database.database import engine
 from .models import Base

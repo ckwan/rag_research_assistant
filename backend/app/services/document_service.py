@@ -4,6 +4,7 @@ from app.models import Document, Chunk
 from app.vector_store import VectorStore
 from app.services import embeddings
 
+
 # def save_document(filename: str, chunk_count: int):
 #     conn = get_connection()
 #     cursor = conn.cursor()
@@ -73,22 +74,3 @@ def get_document_by_id(db: Session, doc_id: int):
 
 def get_all_documents(db: Session):
     return db.query(Document).all()
-
-
-def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50):
-
-    if overlap >= chunk_size:
-        raise ValueError("overlap must be smaller than chunk_size")
-
-    chunks = []
-    start = 0
-    text_length = len(text)
-
-    while start < text_length:
-        end = min(start + chunk_size, text_length)  # make sure we don't go past text
-        chunk = text[start:end].strip()
-        if chunk:  # skip empty chunks
-            chunks.append(chunk)
-        start += chunk_size - overlap  # move start forward with overlap
-
-    return chunks
