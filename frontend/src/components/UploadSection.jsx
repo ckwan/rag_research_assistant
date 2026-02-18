@@ -16,7 +16,7 @@ export default function UploadSection({
         </h2>
         {documents.length > 0 && (
           <button
-            // onClick={resetSystem}
+            onClick={resetSystem}
             className="text-red-400 hover:text-red-300 flex items-center gap-2 text-sm"
           >
             <Trash2 className="w-4 h-4" />
@@ -42,7 +42,7 @@ export default function UploadSection({
             type="file"
             multiple
             accept=".txt,.md"
-            // onChange={handleFileUpload}
+            onChange={handleFileUpload}
             className="hidden"
             disabled={uploading || apiStatus !== 'connected'}
           />

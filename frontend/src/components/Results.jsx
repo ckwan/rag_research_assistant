@@ -1,6 +1,6 @@
 import { Brain, Zap } from 'lucide-react';
 
-const Results = ({ results }) => {
+const Results = ({ results, time }) => {
   if (!results) return null;
 
   return (
@@ -9,12 +9,12 @@ const Results = ({ results }) => {
       <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
         <h3 className="font-bold mb-2 flex items-center gap-2">
           <Brain className="w-5 h-5 text-green-400" />
-          Answer ({results.query_time_ms.toFixed(0)}ms)
+          Answer ({time.toFixed(0)}ms)
         </h3>
         <p className="text-gray-100 leading-relaxed whitespace-pre-wrap">{results.answer}</p>
       </div>
 
-      {/* Reasoning */}
+      {/* Reasoning
       <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
         <h3 className="font-bold mb-2">Pipeline Execution</h3>
         <div className="space-y-2 text-sm">
@@ -33,7 +33,7 @@ const Results = ({ results }) => {
         </div>
       </div>
 
-      {/* Sources */}
+
       <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
         <h3 className="font-bold mb-3">Retrieved Sources (Top-K)</h3>
         <div className="space-y-3">
@@ -51,7 +51,7 @@ const Results = ({ results }) => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

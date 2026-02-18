@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001/api/v1';
 
 /**
  * Check backend health
@@ -15,35 +15,49 @@ export const uploadFile = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const res = await fetch(`${API_URL}/upload`, {
-    method: 'POST',
-    body: formData,
-  });
+  try {
+    const res = await fetch(`${API_URL}/upload`, {
+      method: 'POST',
+      body: formData
+    });
 
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.detail || 'Upload failed');
+    if (res.ok) {
+      const doc = await res.json();
+      return doc;
+    } else {
+      const error = await res.json();
+      alert(`Upload failed: ${error.detail}`);
+    }
+  } catch (err) {
+    alert(`Upload error: ${err.message}`);
   }
-
-  return res.json();
 };
 
 /**
  * Perform RAG query
  */
 export const performQuery = async (query, top_k = 3, threshold = 0.3) => {
-  const res = await fetch(`${API_URL}/query`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, top_k, threshold }),
-  });
+  try {
+    const res = await fetch(`${API_URL}/query`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: query,
+        top_k: top_k,
+        threshold: threshold
+      })
+    });
 
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.detail || 'Query failed');
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    } else {
+      const error = await res.json();
+      alert(`Query failed: ${error.detail}`);
+    }
+  } catch (err) {
+    alert(`Query error: ${err.message}. Make sure the backend is running on port 8000.`);
   }
-
-  return res.json();
 };
 
 /**
